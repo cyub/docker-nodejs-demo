@@ -1,0 +1,21 @@
+version: '3.6'
+services:
+  traefik:
+    image: traefik:1.5
+    ports:
+      - 80:80
+      - 8080:8080
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./traefik.toml:/etc/traefik/traefik.toml
+  hapi:
+    image: hapi
+    labels:
+        - "traefik.port=4000"
+        - "traefik.backend=hapi"
+        - "traefik.frontend.rule=Host:hapi.local"
+        - "traefik.frontend.passHostHeader=true"
+    links:
+      - mongo:mongo
+  mongo:
+    image: mongo:3.6
