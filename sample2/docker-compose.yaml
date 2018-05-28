@@ -1,0 +1,10 @@
+version: '2'
+services:
+  hapi:
+    image: hapi
+    ports:
+      - 6500:4000
+    links:
+      - mongo:mongo
+  mongo:
+    image: mongo:3.6
