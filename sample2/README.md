@@ -16,11 +16,13 @@ sudo curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-c
 sudo chmod +x /usr/local/bin/docker-compose
 
 docker-compose --version
+docker-composer -h
 ```
 
 ### 启动
 
 ```bash
+
 sudo docker-compose up -d
 sudo docker-compose ps
 sudo docker-compose down
@@ -28,11 +30,11 @@ sudo docker-compose down
 
 ### 多容器伸缩处理
 ```bash
-sudo docker-compose up -d  -f docker-compose-v2.yaml
+sudo docker-compose -f docker-compose-v2.yaml up -d
 
 // 访问ip:8080
 // 访问hapi.local
 
 // 增加2台容器
-sudo docker-compose scale hapi=3
+sudo docker-compose -f docker-compose-v2.yaml scale hapi=3
 ```

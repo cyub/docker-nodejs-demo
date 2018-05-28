@@ -13,6 +13,7 @@ services:
     labels:
         - "traefik.port=4000"
         - "traefik.backend=hapi"
+        - "traefik.enable=true"
         - "traefik.frontend.rule=Host:hapi.local"
         - "traefik.frontend.passHostHeader=true"
     links:
