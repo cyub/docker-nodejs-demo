@@ -20,7 +20,19 @@ docker-compose --version
 
 ### 启动
 
-```
+```bash
 sudo docker-compose up -d
 sudo docker-compose ps
+sudo docker-compose down
+```
+
+### 多容器伸缩处理
+```bash
+sudo docker-compose up -d  -f docker-compose-v2.yaml
+
+// 访问ip:8080
+// 访问hapi.local
+
+// 增加2台容器
+sudo docker-compose scale hapi=3
 ```
