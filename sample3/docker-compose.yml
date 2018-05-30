@@ -1,0 +1,35 @@
+version: "3.3"
+
+services:
+  ignite:
+    image: goignite/ignite
+    volumes:
+      - "./data:/root/ignite/data"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    environment:
+      - HOST_ADDRESS=${HOST_ADDRESS}
+      - HOST_FROM=${HOST_FROM}
+      - HOST_TO=${HOST_TO}
+      - DB_DRIVER=${DB_DRIVER}
+      - DB_CONNECT=${DB_CONNECT}
+
+  ignite-admin:
+    image: goignite/ignite-admin
+    volumes:
+      - "./data:/root/ignite/data"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    environment:
+      - AUTH_USERNAME=${AUTH_USERNAME}
+      - AUTH_PASSWORD=${AUTH_PASSWORD}
+      - Auth_SECRET=${AUTH_SECRET}
+      - DB_DRIVER=${DB_DRIVER}
+      - DB_CONNECT=${DB_CONNECT}
+
+  mysql:
+    image: mysql:5.7
+    volumes:
+      - "./mysql/data:/var/lib/mysql"
+      - "./mysql/conf:/etc/mysql/conf.d"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
